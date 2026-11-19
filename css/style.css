@@ -1,0 +1,1165 @@
+
+/* Variáveis e configurações gerais */
+
+:root {
+    --verde-escuro: #194D33;
+    --verde-claro: #79A83B;
+    --marrom: #8B633E;
+    --creme: #F5F3E9;
+    --branco: #FFFFFF;
+    --grafite: #24343B;
+    --borda: #D8DFD5;
+    --verde-suave: #EDF4E8;
+    --raio: 8px;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: var(--creme);
+    color: var(--grafite);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1, h2, h3, h4 {
+    color: var(--verde-escuro);
+    line-height: 1.3;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p {
+    margin: 12px 0;
+}
+
+a {
+    color: var(--verde-escuro);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--marrom);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--verde-claro);
+    outline-offset: 4px;
+}
+
+/* Cabeçalho e navegação */
+
+header {
+    background-color: var(--branco);
+    text-align: center;
+    border-bottom: 4px solid var(--verde-claro);
+}
+
+header h1 {
+    margin: 0;
+    padding: 20px 16px 0;
+}
+
+#logo {
+    display: block;
+    width: 440px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+header > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 850px;
+    margin: 8px auto 28px;
+    padding: 0 20px;
+    color: var(--verde-escuro);
+    font-size: 1.05rem;
+    letter-spacing: 0.4px;
+}
+
+header > p::before,
+header > p::after {
+    content: "";
+    width: 48px;
+    height: 2px;
+    flex-shrink: 0;
+    background-color: var(--verde-claro);
+}
+
+header nav {
+    background-color: var(--verde-escuro);
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 8px 16px;
+}
+
+header nav a {
+    display: block;
+    padding: 10px 14px;
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: var(--raio);
+}
+
+header nav a:hover {
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+}
+
+/* Estrutura principal */
+
+main {
+    width: min(1200px, calc(100% - 48px));
+    margin: 24px auto 48px;
+}
+
+main > section {
+    padding: 36px 0;
+    margin-bottom: 20px;
+}
+
+main > section + section {
+    border-top: 1px solid var(--borda);
+}
+
+/* Apresentação */
+
+#sobre {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 64px;
+    align-items: center;
+    padding: 42px 0;
+}
+
+#sobre h2 {
+    grid-column: 1;
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+#sobre p {
+    grid-column: 1;
+    max-width: 800px;
+    margin: 6px 0;
+}
+
+#sobre > a {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    display: inline-block;
+    padding: 14px 26px;
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border-radius: var(--raio);
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#sobre > a:hover {
+    background-color: #286344;
+}
+
+/* Ferramentas agrícolas */
+
+#ferramentas {
+    --largura-publicidade: 300px;
+    --espaco-publicidade: 28px;
+    padding: 32px;
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+#ferramentas > h2,
+#ferramentas > p:not(.aviso) {
+    width: calc(100% - var(--largura-publicidade) - var(--espaco-publicidade));
+    text-align: center;
+}
+
+#ferramentas > h2 {
+    margin-bottom: 8px;
+}
+
+#ferramentas > p:not(.aviso) {
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+#ferramentas > p:not(.aviso)::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 20px auto 0;
+    background-color: var(--verde-claro);
+    border-radius: 2px;
+}
+
+.ferramentas-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--largura-publicidade);
+    gap: var(--espaco-publicidade);
+    align-items: start;
+    margin-top: 24px;
+}
+
+#calculadora {
+    min-width: 0;
+}
+
+.abas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.abas button {
+    width: 100%;
+    margin: 0;
+    color: var(--verde-escuro);
+    background-color: var(--verde-suave);
+    border: 1px solid var(--borda);
+}
+
+.abas button[aria-pressed="true"] {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+}
+
+#painel-conversor h3,
+#painel-fertilizantes h3 {
+    margin-top: 0;
+}
+
+/* Formulários */
+
+form fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    min-width: 0;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: #FAFCF9;
+}
+
+legend {
+    padding: 0 8px;
+    color: var(--verde-escuro);
+    font-weight: bold;
+}
+
+fieldset p {
+    min-width: 0;
+    margin: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+input,
+select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--grafite);
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--verde-claro);
+    border-color: var(--verde-escuro);
+}
+
+input::placeholder {
+    color: #737B74;
+}
+
+/* Organização do conversor */
+
+#form-conversor fieldset p:has(#tipo-conversao) {
+    grid-column: 1;
+    order: 1;
+}
+
+#campo-nutriente {
+    grid-column: 2;
+    order: 2;
+}
+
+#form-conversor fieldset p:has(#origem) {
+    grid-column: 1;
+    order: 3;
+}
+
+#form-conversor fieldset p:has(#destino) {
+    grid-column: 2;
+    order: 4;
+}
+
+#form-conversor fieldset p:has(#valor-conversao) {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+    order: 5;
+}
+
+#campo-profundidade {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+    order: 6;
+}
+
+#form-conversor button[type="submit"] {
+    grid-column: 1;
+    order: 7;
+}
+
+#form-conversor button[type="reset"] {
+    grid-column: 2;
+    order: 8;
+}
+
+#form-conversor fieldset:not(:has(#campo-nutriente:not([hidden]))) p:has(#tipo-conversao) {
+    grid-column: 1 / -1;
+}
+
+/* Organização da calculadora de fertilizantes */
+
+#form-fertilizantes fieldset p:has(#area) {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+}
+
+#form-fertilizantes button[type="submit"] {
+    grid-column: 1;
+}
+
+#form-fertilizantes button[type="reset"] {
+    grid-column: 2;
+}
+
+/* Botões */
+
+button {
+    min-height: 44px;
+    padding: 12px 18px;
+    border: 1px solid transparent;
+    border-radius: var(--raio);
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #286344;
+}
+
+button[type="reset"] {
+    background-color: var(--branco);
+    color: var(--verde-escuro);
+    border-color: var(--borda);
+}
+
+button[type="reset"]:hover,
+.abas button[aria-pressed="false"]:hover {
+    background-color: #DDEBD6;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Resultados */
+
+.resultado {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--verde-suave);
+    border: 1px solid var(--borda);
+    border-left: 4px solid var(--verde-claro);
+    border-radius: var(--raio);
+    overflow-wrap: anywhere;
+}
+
+.resultado h3,
+.resultado h4 {
+    margin-top: 0;
+}
+
+output {
+    color: var(--verde-escuro);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#valor-resultado {
+    display: block;
+    font-size: 1.8rem;
+}
+
+.resultado button {
+    margin-top: 12px;
+}
+
+/* Espaço publicitário */
+
+#publicidade {
+    width: 100%;
+    max-width: var(--largura-publicidade);
+    text-align: center;
+}
+
+#publicidade > small {
+    display: block;
+    margin-bottom: 6px;
+    color: #6B726B;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#banner-publicitario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 300 / 250;
+    background-color: var(--creme);
+    border: 1px dashed var(--borda);
+    border-radius: var(--raio);
+    color: #6B726B;
+}
+
+#banner-publicitario p {
+    margin: 0;
+}
+
+/* Avisos */
+
+.aviso {
+    padding: 14px 16px;
+    margin-top: 24px;
+    margin-bottom: 0;
+    background-color: #FFF8E9;
+    border-left: 4px solid var(--marrom);
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Consulta de propriedades do solo */
+
+#soilgrids > h2,
+#soilgrids > p:not(.aviso) {
+    text-align: center;
+}
+
+#soilgrids > p:not(.aviso) {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-soilgrids {
+    max-width: 760px;
+    margin: 28px auto;
+}
+
+#soilgrids form fieldset {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding: 24px;
+    background-color: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+#btn-localizacao {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: fit-content;
+    padding: 10px 24px;
+    background-color: var(--verde-suave);
+    color: var(--verde-escuro);
+    border-color: var(--borda);
+}
+
+#btn-localizacao:hover {
+    background-color: #DDEBD6;
+}
+
+#soilgrids fieldset p:has(#profundidade-solo) {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 340px;
+    justify-self: center;
+}
+
+#btn-consultar-solo {
+    justify-self: end;
+    width: fit-content;
+    padding: 10px 24px;
+}
+
+#form-soilgrids button[type="reset"] {
+    justify-self: start;
+    width: fit-content;
+    padding: 10px 24px;
+}
+
+#status-soilgrids {
+    color: var(--verde-escuro);
+    font-weight: bold;
+}
+
+#status-soilgrids:empty {
+    display: none;
+}
+
+#resultado-soilgrids {
+    max-width: 760px;
+    margin: 24px auto;
+}
+
+#soilgrids > .aviso {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--branco);
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid var(--borda);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+th {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #F5F8F3;
+}
+
+#localizacao-consultada {
+    font-size: 0.9rem;
+}
+
+/* Instruções de utilização */
+
+#instrucoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 56px;
+    row-gap: 32px;
+}
+
+#instrucoes > h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+#instrucoes article {
+    min-width: 0;
+    padding: 8px 0;
+}
+
+#instrucoes article h3 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--verde-claro);
+}
+
+#instrucoes article:last-child {
+    grid-column: 1;
+    width: 100%;
+}
+
+/* Configurações dos artigos */
+
+article h3 {
+    margin-top: 0;
+}
+
+article p:last-child {
+    margin-bottom: 0;
+}
+
+article ul,
+article ol {
+    padding-left: 22px;
+}
+
+article li {
+    margin-bottom: 8px;
+}
+
+article li::marker {
+    color: var(--verde-escuro);
+}
+
+/* Conteúdo complementar */
+
+#conteudo {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 32px;
+    row-gap: 28px;
+    padding: 36px 32px;
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+#conteudo > h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+#conteudo > h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 16px auto 0;
+    background-color: var(--verde-claro);
+    border-radius: 2px;
+}
+
+#conteudo > article {
+    grid-column: span 2;
+    min-width: 0;
+    padding: 12px 0 20px;
+    border-bottom: 1px solid var(--borda);
+}
+
+#conteudo > article h3 {
+    margin-bottom: 16px;
+}
+
+#conteudo > article:nth-of-type(4) {
+    grid-column: 2 / 4;
+}
+
+#conteudo > article:nth-of-type(5) {
+    grid-column: 4 / 6;
+}
+
+/* Materiais educativos */
+
+#conteudo > article:last-child {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    padding: 36px 28px;
+    background-color: var(--verde-suave);
+    border: 0;
+    border-radius: var(--raio);
+    text-align: center;
+}
+
+#conteudo > article:last-child h3 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+
+#conteudo > article:last-child h3::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 14px auto 0;
+    background-color: var(--verde-claro);
+    border-radius: 2px;
+}
+
+#conteudo > article:last-child > p {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure {
+    max-width: 760px;
+    margin: 24px auto;
+}
+
+iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: var(--raio);
+}
+
+figcaption {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #606A63;
+}
+
+#conteudo article:last-child > p a,
+#conteudo article:last-child li a {
+    display: inline-block;
+    padding: 12px 22px;
+    border: 1px solid var(--verde-escuro);
+    border-radius: var(--raio);
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+}
+
+#conteudo article:last-child > p a:hover,
+#conteudo article:last-child li a:hover {
+    background-color: #286344;
+}
+
+#conteudo article:last-child ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    margin: 16px 0 0;
+    list-style: none;
+}
+
+#conteudo article:last-child li {
+    margin: 0;
+}
+
+#conteudo article:last-child li a {
+    background-color: transparent;
+    color: var(--verde-escuro);
+}
+
+#conteudo article:last-child li a:hover {
+    background-color: #DDEBD6;
+}
+
+/* Perguntas frequentes */
+
+#duvidas {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#duvidas > h2 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+details {
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+}
+
+details:last-child {
+    margin-bottom: 0;
+}
+
+summary {
+    font-weight: bold;
+    color: var(--verde-escuro);
+    cursor: pointer;
+}
+
+details[open] {
+    border-left: 4px solid var(--verde-claro);
+}
+
+details p {
+    margin-bottom: 0;
+}
+
+/* Referências técnicas */
+
+#referencias {
+    padding: 28px;
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+#referencias ul {
+    padding-left: 22px;
+}
+
+#referencias li {
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* Rodapé */
+
+footer {
+    padding: 32px 20px;
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    border-top: 4px solid var(--verde-claro);
+}
+
+footer p {
+    max-width: 1000px;
+    margin: 8px auto;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+}
+
+footer a {
+    color: var(--branco);
+}
+
+footer a:hover {
+    color: #CDE5A9;
+}
+
+/* Responsividade para tablets */
+
+@media (max-width: 900px) {
+    #logo {
+        width: 380px;
+    }
+
+    #sobre {
+        column-gap: 28px;
+    }
+
+    #sobre > a {
+        padding: 12px 18px;
+    }
+
+    #ferramentas > h2,
+    #ferramentas > p:not(.aviso) {
+        width: 100%;
+    }
+
+    .ferramentas-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #publicidade {
+        margin: 12px auto 0;
+    }
+
+    #ferramentas,
+    #referencias,
+    #conteudo {
+        padding: 24px;
+    }
+
+    #instrucoes {
+        column-gap: 32px;
+    }
+
+    #conteudo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 28px;
+    }
+
+    #conteudo > article,
+    #conteudo > article:nth-of-type(4) {
+        grid-column: span 1;
+    }
+
+    #conteudo > article:nth-of-type(5) {
+        grid-column: 1 / -1;
+        max-width: 550px;
+        width: 100%;
+        justify-self: center;
+    }
+
+    #conteudo > article:last-child {
+        grid-column: 1 / -1;
+        padding: 28px 20px;
+    }
+
+    main > section {
+        margin-bottom: 12px;
+    }
+}
+
+/* Responsividade para celulares */
+
+@media (max-width: 600px) {
+    main {
+        width: calc(100% - 32px);
+        margin: 16px auto 32px;
+    }
+
+    main > section {
+        padding: 24px 0;
+        margin-bottom: 16px;
+    }
+
+    #logo {
+        width: 290px;
+    }
+
+    header > p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        letter-spacing: 0;
+    }
+
+    header > p::before,
+    header > p::after {
+        display: none;
+    }
+
+    header nav ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px;
+        padding: 8px;
+    }
+
+    header nav a {
+        font-size: 0.85rem;
+        padding: 10px 6px;
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    #sobre {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+        padding: 24px 0;
+        gap: 8px;
+    }
+
+    #sobre h2 {
+        font-size: 1.8rem;
+    }
+
+    #sobre > a {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: center;
+        margin-top: 16px;
+    }
+
+    #ferramentas,
+    #referencias,
+    #conteudo {
+        padding: 16px;
+    }
+
+    .abas,
+    form fieldset,
+    #soilgrids form fieldset,
+    #instrucoes,
+    #conteudo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form fieldset,
+    #soilgrids form fieldset {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    #form-conversor fieldset p:has(#tipo-conversao),
+    #form-conversor fieldset p:has(#origem),
+    #form-conversor fieldset p:has(#destino),
+    #campo-nutriente,
+    #campo-profundidade,
+    #form-conversor fieldset p:has(#valor-conversao),
+    #form-conversor button[type="submit"],
+    #form-conversor button[type="reset"],
+    #form-fertilizantes button[type="submit"],
+    #form-fertilizantes button[type="reset"] {
+        grid-column: 1 / -1;
+    }
+
+    #form-conversor fieldset p:has(#valor-conversao),
+    #campo-profundidade,
+    #form-fertilizantes fieldset p:has(#area) {
+        max-width: none;
+    }
+
+    fieldset button {
+        width: 100%;
+    }
+
+    #form-soilgrids {
+        margin: 20px auto;
+    }
+
+    #btn-localizacao,
+    #btn-consultar-solo,
+    #form-soilgrids button[type="reset"] {
+        justify-self: stretch;
+        width: 100%;
+    }
+
+    #soilgrids fieldset p:has(#profundidade-solo) {
+        max-width: none;
+    }
+
+    #instrucoes,
+    #conteudo {
+        row-gap: 20px;
+    }
+
+    #instrucoes article {
+        padding: 0;
+    }
+
+    #conteudo > article,
+    #conteudo > article:nth-of-type(4),
+    #conteudo > article:nth-of-type(5) {
+        grid-column: 1 / -1;
+        max-width: none;
+        padding: 10px 0 20px;
+    }
+
+    #conteudo > article:last-child {
+        grid-column: 1 / -1;
+        margin-top: 8px;
+        padding: 24px 14px;
+    }
+
+    #conteudo > article:last-child h3 {
+        font-size: 1.35rem;
+    }
+
+    #conteudo article:last-child ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #conteudo article:last-child li {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #conteudo article:last-child li a {
+        width: 100%;
+    }
+
+    .resultado {
+        padding: 14px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    footer nav ul {
+        flex-direction: column;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+/* Preferência por movimento reduzido */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    button,
+    a {
+        transition: none;
+    }
+}
