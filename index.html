@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FertiMetrica - Conversor de nutrientes e calculadora de fertilizantes agrícolas.">
+    <meta name="author" content="Lucas Bueno dos Santos">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FertiMetrica | Ferramentas Agrícolas</title>
+</head>
+<body>
+    <header id="introducao">
+        <h1><img src="img/logo_texto.png" alt="FertiMétrica" id="logo"></h1>
+        <p>Conversão de nutrientes e cálculo de fertilizantes agrícolas.</p>
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li><a href="#introducao">Início</a></li>
+                <li><a href="#ferramentas">Ferramentas</a></li>
+                <li><a href="#soilgrids">Consulta de solo</a></li>
+                <li><a href="#instrucoes">Instruções</a></li>
+                <li><a href="#conteudo">Conteúdo Complementar</a></li>
+                <li><a href="#referencias">Referências</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="sobre">
+            <h2>Precisão nos cálculos agrícolas</h2>
+            <p>O FertiMetrica é uma ferramenta gratuita desenvolvida para auxiliar técnicos agrícolas, engenheiros agrônomos e estudantes da área de Ciências Agrárias na realização de cálculos relacionados à fertilidade do solo e à nutrição vegetal.</p>
+            <p>Realize conversões entre formas químicas e unidades de medida ou calcule a quantidade de fertilizante necessária para fornecer uma determinada dose de nutrientes.</p>
+            <a href="#ferramentas">Utilizar ferramentas</a>
+        </section>
+
+        <!-- Ferramentas e publicidade -->
+        <section id="ferramentas">
+            <h2>Ferramentas agrícolas</h2>
+            <p>Selecione a ferramenta de acordo com sua necessidade.</p>
+            <div class="ferramentas-layout">
+                <section id="calculadora">
+                    <div class="abas">
+                        <button type="button" id="btn-conversor" aria-controls="painel-conversor" aria-pressed="true">Conversor de Nutrientes</button>
+                        <button type="button" id="btn-fertilizantes" aria-controls="painel-fertilizantes" aria-pressed="false">Calculadora de Fertilizantes</button>
+                    </div>
+                    <section id="painel-conversor">
+                        <h3>Conversor de nutrientes</h3>
+                        <p>Converta nutrientes entre diferentes formas químicas e unidades de medida.</p>
+                        <form id="form-conversor">
+                            <fieldset>
+                                <legend>Dados da conversão</legend>
+                                <p>
+                                    <label for="tipo-conversao">Tipo de conversão:</label>
+                                    <select id="tipo-conversao" required>
+                                        <option value="quimica">Formas químicas</option>
+                                        <option value="unidades">Unidades de medida</option>
+                                    </select>
+                                </p>
+                                <p id="campo-nutriente">
+                                    <label for="nutriente">Nutriente:</label>
+                                    <select id="nutriente" required>
+                                        <option value="">Selecione um nutriente</option>
+                                        <option value="N">Nitrogênio (N)</option>
+                                        <option value="P">Fósforo (P)</option>
+                                        <option value="K">Potássio (K)</option>
+                                        <option value="Ca">Cálcio (Ca)</option>
+                                        <option value="Mg">Magnésio (Mg)</option>
+                                        <option value="S">Enxofre (S)</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="valor-conversao">Valor a converter:</label>
+                                    <input type="number" id="valor-conversao" min="0" step="any" placeholder="Ex.: 200" required>
+                                </p>
+                                <p>
+                                    <label for="origem">Converter de:</label>
+                                    <select id="origem" required>
+                                        <option value="">Selecione</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="destino">Converter para:</label>
+                                    <select id="destino" required>
+                                        <option value="">Selecione</option>
+                                    </select>
+                                </p>
+                                <p id="campo-profundidade" hidden>
+                                    <label for="profundidade">Espessura da camada de solo (cm):</label>
+                                    <input type="number" id="profundidade" min="0.01" step="any" value="20">
+                                </p>
+                                <button type="submit">Converter</button>
+                                <button type="reset">Limpar</button>
+                            </fieldset>
+                        </form>
+                        <section id="resultado-conversor" class="resultado" hidden>
+                            <h4>Resultado da conversão</h4>
+                            <output id="valor-resultado" aria-live="polite"></output>
+                            <p id="memoria-conversao"></p>
+                            <button type="button" id="copiar-conversao">Copiar resultado</button>
+                        </section>
+                    </section>
+                    <section id="painel-fertilizantes" hidden>
+                        <h3>Calculadora de fertilizantes</h3>
+                        <p>Calcule a quantidade de fertilizante necessária para fornecer uma dose informada de determinado nutriente.</p>
+                        <form id="form-fertilizantes">
+                            <fieldset>
+                                <legend>Dados do fertilizante</legend>
+                                <p>
+                                    <label for="fertilizante">Fertilizante:</label>
+                                    <select id="fertilizante" required>
+                                        <option value="">Selecione um fertilizante</option>
+                                        <option value="personalizado">Fertilizante personalizado</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="nutriente-fertilizante">Nutriente desejado:</label>
+                                    <select id="nutriente-fertilizante" required>
+                                        <option value="">Selecione um nutriente</option>
+                                        <option value="N">Nitrogênio (N)</option>
+                                        <option value="P">Fósforo (P)</option>
+                                        <option value="P2O5">Pentóxido de fósforo (P₂O₅)</option>
+                                        <option value="K">Potássio (K)</option>
+                                        <option value="K2O">Óxido de potássio (K₂O)</option>
+                                        <option value="Ca">Cálcio (Ca)</option>
+                                        <option value="CaO">Óxido de cálcio (CaO)</option>
+                                        <option value="Mg">Magnésio (Mg)</option>
+                                        <option value="MgO">Óxido de magnésio (MgO)</option>
+                                        <option value="S">Enxofre (S)</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="concentracao">Teor do nutriente no fertilizante (%):</label>
+                                    <input type="number" id="concentracao" min="0.01" max="100" step="any" placeholder="Ex.: 45" required>
+                                </p>
+                                <p>
+                                    <label for="dose">Dose desejada do nutriente (kg/ha):</label>
+                                    <input type="number" id="dose" min="0" step="any" placeholder="Ex.: 80" required>
+                                </p>
+                                <p>
+                                    <label for="area">Área de aplicação (ha):</label>
+                                    <input type="number" id="area" min="0.01" step="any" value="1" required>
+                                </p>
+                                <button type="submit">Calcular</button>
+                                <button type="reset">Limpar</button>
+                            </fieldset>
+                        </form>
+                        <section id="resultado-fertilizantes" class="resultado" hidden>
+                            <h4>Resultado do cálculo</h4>
+                            <p>Quantidade por hectare: <output id="resultado-hectare" aria-live="polite"></output></p>
+                            <p>Quantidade total: <output id="resultado-total" aria-live="polite"></output></p>
+                            <p id="memoria-fertilizantes"></p>
+                            <button type="button" id="copiar-fertilizantes">Copiar resultado</button>
+                        </section>
+                    </section>
+                </section>
+                <aside id="publicidade" aria-label="Publicidade">
+                    <small>Publicidade</small>
+                    <div id="banner-publicitario">
+                        <p>Espaço publicitário</p>
+                        <small>300 × 250 px</small>
+                    </div>
+                </aside>
+            </div>
+            <p class="aviso"><strong>Atenção:</strong> Os resultados apresentados possuem caráter matemático e não substituem uma recomendação agronômica profissional.</p>
+        </section>
+        <section id="soilgrids">
+            <h2>Consulta de propriedades do solo</h2>
+            <p>Consulte estimativas das propriedades físicas e químicas do solo de uma região por meio da plataforma SoilGrids.</p>
+
+            <form id="form-soilgrids">
+                <fieldset>
+                    <legend>Localização e profundidade</legend>
+                    <p>
+                        <label for="latitude">Latitude:</label>
+                        <input type="number" id="latitude" min="-90" max="90" step="any" placeholder="Ex.: -25.7500" required>
+                    </p>
+                    <p>
+                        <label for="longitude">Longitude:</label>
+                        <input type="number" id="longitude" min="-180" max="180" step="any" placeholder="Ex.: -53.1000" required>
+                    </p>
+                    <button type="button" id="btn-localizacao">Utilizar minha localização</button>
+                    <p>
+                        <label for="profundidade-solo">Profundidade:</label>
+                        <select id="profundidade-solo" required>
+                            <option value="0-5cm">0–5 cm</option>
+                            <option value="5-15cm">5–15 cm</option>
+                            <option value="15-30cm">15–30 cm</option>
+                            <option value="30-60cm">30–60 cm</option>
+                            <option value="60-100cm">60–100 cm</option>
+                            <option value="100-200cm">100–200 cm</option>
+                        </select>
+                    </p>
+                    <button type="submit" id="btn-consultar-solo">Consultar propriedades</button>
+                    <button type="reset">Limpar</button>
+                </fieldset>
+            </form>
+            <p id="status-soilgrids" role="status"></p>
+
+    <section id="resultado-soilgrids" class="resultado" hidden>
+        <h3>Propriedades estimadas do solo</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Propriedade</th>
+                    <th scope="col">Resultado</th>
+                </tr>
+            </thead>
+            <tbody id="dados-soilgrids"></tbody>
+        </table>
+        <p id="localizacao-consultada"></p>
+        <p>Fonte: ISRIC — SoilGrids.</p>
+        <button type="button" id="copiar-soilgrids">Copiar resultado</button>
+    </section>
+
+    <p class="aviso"><strong>Atenção:</strong> Os dados do SoilGrids são estimativas obtidas por modelagem digital, com resolução espacial de 250 metros. Não substituem a coleta de amostras, a análise laboratorial ou a avaliação agronômica profissional.</p>
+</section>
+        <!-- Instruções de utilização -->
+        <section id="instrucoes">
+            <h2>Instruções de utilização</h2>
+            <article>
+                <h3>Conversor de nutrientes</h3>
+                <ol>
+                    <li>Selecione o tipo de conversão desejada.</li>
+                    <li>Informe o nutriente, quando necessário.</li>
+                    <li>Digite o valor que deseja converter.</li>
+                    <li>Selecione a forma química ou unidade de origem e destino.</li>
+                    <li>Clique em Converter para visualizar o resultado.</li>
+                </ol>
+                <p><strong>Exemplo:</strong> A conversão de 200 kg de P para P₂O₅ resulta em 458 kg de P₂O₅, utilizando o fator de conversão 2,29.</p>
+            </article>
+            <article>
+                <h3>Calculadora de fertilizantes</h3>
+                <ol>
+                    <li>Selecione o fertilizante desejado.</li>
+                    <li>Informe o nutriente que deseja fornecer.</li>
+                    <li>Confira a concentração do nutriente indicada na embalagem.</li>
+                    <li>Informe a dose desejada e a área de aplicação.</li>
+                    <li>Clique em Calcular para visualizar o resultado.</li>
+                </ol>
+                <p><strong>Exemplo:</strong> Para fornecer 90 kg/ha de N utilizando um fertilizante com 45% de N, são necessários 200 kg/ha do produto.</p>
+            </article>
+            <article>
+                <h3>Consulta de propriedades do solo</h3>
+                <ol>
+                    <li>Informe a latitude e a longitude do local ou utilize sua localização atual.</li>
+                    <li>Selecione a profundidade do solo.</li>
+                    <li>Clique em Consultar propriedades.</li>
+                    <li>Visualize os dados estimados disponibilizados pelo SoilGrids.</li>
+                </ol>
+            </article>
+        </section>
+
+        <!-- Conteúdo complementar -->
+        <section id="conteudo">
+            <h2>Conteúdo complementar</h2>
+            <article>
+                <h3>Fertilidade do solo</h3>
+                <p>A fertilidade do solo está relacionada à capacidade de fornecer nutrientes essenciais ao crescimento e desenvolvimento das plantas. Seu manejo adequado contribui para a produtividade agrícola e para a utilização eficiente dos recursos naturais.</p>
+            </article>
+            <article>
+                <h3>Propriedades físicas e químicas do solo</h3>
+                <p>A proporção de areia, silte e argila influencia a retenção de água, a aeração, a disponibilidade de nutrientes e o desenvolvimento radicular.</p>
+                <p>Solos arenosos geralmente apresentam menor capacidade de retenção de água e nutrientes, enquanto solos argilosos tendem a apresentar maior capacidade de retenção, dependendo de sua composição mineralógica e do teor de matéria orgânica.</p>
+                <p>O conhecimento dessas características auxilia os profissionais no planejamento do manejo agrícola.</p>
+            </article>
+            <article>
+                <h3>Macronutrientes essenciais</h3>
+                <p>Os macronutrientes minerais são elementos essenciais exigidos pelas plantas em maiores quantidades. Entre eles, destacam-se:</p>
+                <ul>
+                    <li><strong>Nitrogênio (N):</strong> participa da formação de proteínas e do crescimento vegetativo.</li>
+                    <li><strong>Fósforo (P):</strong> atua na transferência de energia e no desenvolvimento vegetal.</li>
+                    <li><strong>Potássio (K):</strong> auxilia na regulação hídrica e na ativação de enzimas.</li>
+                    <li><strong>Cálcio (Ca):</strong> contribui para a estrutura das paredes celulares.</li>
+                    <li><strong>Magnésio (Mg):</strong> integra a estrutura da molécula de clorofila.</li>
+                    <li><strong>Enxofre (S):</strong> participa da formação de aminoácidos e proteínas.</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Análise de solo</h3>
+                <p>A análise de solo permite avaliar características químicas importantes para o manejo da fertilidade. Seus resultados auxiliam os profissionais na tomada de decisões relacionadas à adubação e à correção da acidez do solo.</p>
+                <p>Para obter resultados representativos, é fundamental que a coleta das amostras seja realizada de maneira adequada.</p>
+            </article>
+            <article>
+                <h3>Fertilizantes agrícolas</h3>
+                <p>Os fertilizantes são produtos utilizados para fornecer nutrientes essenciais às plantas. Podem apresentar diferentes composições, concentrações e características de solubilidade.</p>
+                <p>As formulações NPK expressam, respectivamente, os teores de nitrogênio (N), fósforo expresso em P₂O₅ e potássio expresso em K₂O.</p>
+            </article>
+            <article>
+                <h3>Materiais educativos</h3>
+                    <p>A coleta adequada de amostras de solo é fundamental para obter resultados representativos na análise laboratorial e auxiliar no planejamento da adubação.</p>
+                    <figure>
+                        <iframe src="https://www.youtube-nocookie.com/embed/GGAFiy0J2dE" title="Como realizar uma amostragem de solo" width="560" height="315" loading="lazy" allowfullscreen></iframe>
+                        <figcaption>Orientações para a coleta de amostras de solo destinadas à análise laboratorial.</figcaption>
+                    </figure>
+                    <p><a href="https://www.youtube.com/watch?v=GGAFiy0J2dE" target="_blank" rel="noopener noreferrer">Assistir ao vídeo no YouTube</a></p>
+                    <ul>
+                        <li><a href="https://www.embrapa.br/solos" target="_blank" rel="noopener noreferrer">Embrapa Solos</a></li>
+                        <li><a href="https://www.youtube.com/@embrapa" target="_blank" rel="noopener noreferrer">Canal da Embrapa no YouTube</a></li>
+                    </ul>
+            </article>
+        </section>
+
+        <!-- Perguntas frequentes -->
+        <section id="duvidas">
+            <h2>Perguntas frequentes</h2>
+            <details>
+                <summary>O FertiMetrica é gratuito?</summary>
+                <p>Sim. Todas as ferramentas são disponibilizadas gratuitamente.</p>
+            </details>
+            <details>
+                <summary>Qual é a diferença entre P e P₂O₅?</summary>
+                <p>P representa o fósforo, enquanto P₂O₅ é uma forma convencional de expressar seu teor em fertilizantes.</p>
+            </details>
+            <details>
+                <summary>Por que informar a espessura da camada de solo?</summary>
+                <p>Essa informação é necessária em determinadas conversões entre concentração volumétrica e quantidade de nutrientes por hectare.</p>
+            </details>
+            <details>
+                <summary>O FertiMetrica realiza recomendações de adubação?</summary>
+                <p>Não. A ferramenta realiza cálculos com base nos dados informados pelo usuário, sem substituir a avaliação de um profissional habilitado.</p>
+            </details>
+        </section>
+
+        <!-- Referências técnicas -->
+        <section id="referencias">
+            <h2>Referências técnicas</h2>
+            <p>Os fatores de conversão e dados técnicos dos fertilizantes têm como referência o Manual de Adubação e Calagem para o Estado do Paraná.</p>
+            <ul>
+                <li><cite>Manual de Adubação e Calagem para o Estado do Paraná.</cite> SBCS-NEPAR. Capítulo 6 — Adubos e inoculantes. <a href="https://sbcs-nepar.org.br/2024/07/30/manual-de-adubacao-e-calagem-para-o-estado-do-parana-2a-edicao/" target="_blank" rel="noopener noreferrer">Adquirir manual</a>.</li>
+                <li><a href="https://www.embrapa.br/" target="_blank" rel="noopener noreferrer">Empresa Brasileira de Pesquisa Agropecuária — Embrapa</a></li>
+                <li><a href="https://soilgrids.org/" target="_blank" rel="noopener noreferrer">ISRIC — World Soil Information (SoilGrids)</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p><strong>FertiMetrica</strong> — Tecnologia aplicada aos cálculos agrícolas.</p>
+        <p>Desenvolvido por Lucas Bueno dos Santos — Técnico Agrícola e acadêmico de Engenharia de Software.</p>
+        <p>Projeto acadêmico desenvolvido na disciplina de Programação para Web — UTFPR, Campus Dois Vizinhos.</p>
+        <nav aria-label="Navegação do rodapé">
+            <ul>
+                <li><a href="https://lucasbueno01.github.io/portfolioAtvWeb/03_responsivo/" target="_blank" rel="noopener noreferrer">Site pessoal do desenvolvedor</a></li>
+                <li><a href="https://github.com/LucasBueno01/FertiMetrica" target="_blank" rel="noopener noreferrer">Repositório no GitHub</a></li>
+                <li><a href="#introducao">Voltar ao início</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2026 FertiMetrica.</p>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
