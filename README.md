@@ -92,7 +92,7 @@ http://localhost:8000
 
 ## Acesso ao projeto
 
-O projeto será disponibilizado por meio do GitHub Pages:
+O projeto está disponibilizado por meio do GitHub Pages:
 
 https://lucasbueno01.github.io/FertiMetrica/
 
